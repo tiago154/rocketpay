@@ -25,12 +25,45 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 mix phx.new rocketpay --no-webpack --no-html
 ```
 
-### Atalho para criar o banco e rodar as migrates
+## Credo
+### Criando arquivo de lint do projeto
+```bash
+mix credo gen.config
+```
+
+## Ecto
+
+#### Atalho para criar o banco e rodar as migrates
 ```bash
 mix ecto.setup
 ```
 
-### Criando arquivo de lint do projeto
+#### Cria o banco de dados
 ```bash
-mix credo gen.config
+mix ecto.create
+```
+
+#### Deleta o banco de dados
+```bash
+mix ecto.drop
+```
+
+#### Cria uma migration
+```bash
+mix ecto.gen.migration create_blablabla_table
+```
+
+#### Executa as migrations
+```bash
+mix ecto.migrate
+```
+
+## PostGres Docker
+
+```bash
+docker run --name postgres-dev -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -p 5432:5432 -d postgres
+```
+
+```bash
+docker start postgres-dev
 ```
