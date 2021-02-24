@@ -1,3 +1,5 @@
+[![Elixir CI](https://github.com/tiago154/rocketpay/actions/workflows/elixir.yml/badge.svg)](https://github.com/tiago154/rocketpay/actions/workflows/elixir.yml)
+
 # Rocketpay
 
 To start your Phoenix server:
