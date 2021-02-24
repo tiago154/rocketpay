@@ -1,5 +1,7 @@
 defmodule RocketpayWeb.UsersView do
-  alias Rocketpay.User
+  use RocketpayWeb, :view
+
+  alias Rocketpay.{Account, User}
 
   def render(
     "create.json",
@@ -7,7 +9,11 @@ defmodule RocketpayWeb.UsersView do
       user: %User{
         id: id,
         name: name,
-        nickname: nickname
+        nickname: nickname,
+        account: %Account{
+          id: account_id,
+          balance: balance
+        }
         }
     })
   do
@@ -16,7 +22,11 @@ defmodule RocketpayWeb.UsersView do
       user: %{
         id: id,
         name: name,
-        nickname: nickname
+        nickname: nickname,
+        account: %{
+          id: account_id,
+          balance: balance
+        }
       }
     }
   end
