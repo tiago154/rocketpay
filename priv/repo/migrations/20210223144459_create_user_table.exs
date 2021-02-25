@@ -2,7 +2,7 @@ defmodule Rocketpay.Repo.Migrations.CreateUserTable do
   use Ecto.Migration
 
   def change do
-    create table :users do
+    create table(:users) do
       add :name, :string
       add :age, :integer
       add :email, :string

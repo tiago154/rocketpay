@@ -7,13 +7,11 @@ defmodule Rocketpay.Users.Create do
     |> Multi.insert(:create_user, User.changeset(params))
     |> Multi.run(
       :create_account,
-      fn repo, %{create_user: user} -> insert_account(repo, user)
-      end
+      fn repo, %{create_user: user} -> insert_account(repo, user) end
     )
     |> Multi.run(
       :preload_data,
-      fn repo, %{create_user: user} -> preload_data(repo, user)
-      end
+      fn repo, %{create_user: user} -> preload_data(repo, user) end
     )
     |> run_transaction()
   end
