@@ -46,8 +46,17 @@ jobs:
       run: mix credo
 
     - name: Run Tests
-      run: |
-        mix test
-        mix coveralls.github
+      run: mix test
+      env:
+        DB_HOST: postgres
+
+    - name: Setup elixir
+      uses: actions/setup-elixir@v1
+      with:
+        elixir-version: 1.10.3 # Define the elixir version [required]
+        otp-version: 22.2.3 # Define the OTP version [required]
+
+    - name: Run coveralls
+      run: mix coveralls.github
       env:
         DB_HOST: postgres
