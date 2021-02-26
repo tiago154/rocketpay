@@ -12,11 +12,6 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
 
-    container:
-      image: elixir:1.11-alpine
-      env:
-        MIX_ENV: test
-
     services:
       postgres:
         image: postgres
@@ -28,12 +23,14 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-elixir@v1
+      with:
+        otp-version: 22.2.3
+        elixir-version: 1.10.3
+
     - name: Install Dependencies
-      run: |
-        mix local.rebar --force
-        mix local.hex --force
-        mix deps.get
+      run: mix deps.get
 
     - name: Build
       run: mix compile
