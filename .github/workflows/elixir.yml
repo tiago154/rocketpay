@@ -1,7 +1,4 @@
 name: Elixir CI
-env:
-  MIX_ENV: test
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
   push:
@@ -19,6 +16,7 @@ jobs:
       image: elixir:1.11-alpine
       env:
         MIX_ENV: test
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     services:
       postgres:
@@ -31,13 +29,12 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Setup elixir
-      uses: actions/setup-elixir@v1
-      with:
-        elixir-version: 1.10.3 # Define the elixir version [required]
-        otp-version: 22.2.3 # Define the OTP version [required]
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get
 
     - name: Install dependencies
       run: mix deps.get
@@ -49,11 +46,8 @@ jobs:
       run: mix credo
 
     - name: Run Tests
-      run: mix test
-      env:
-        DB_HOST: postgres
-
-    - name: Run Coveralls
-      run: mix coveralls.github
+      run: |
+        mix test
+        mix mix coveralls.github
       env:
         DB_HOST: postgres
