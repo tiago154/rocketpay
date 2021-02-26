@@ -1,4 +1,6 @@
 name: Elixir CI
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
   push:
@@ -45,5 +47,6 @@ jobs:
     - name: Run Tests
       run: |
         mix test
+        mix coveralls.github
       env:
         DB_HOST: postgres
