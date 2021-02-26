@@ -50,6 +50,8 @@ jobs:
       env:
         DB_HOST: postgres
 
+    - uses: actions/checkout@v2
+
     - name: Setup elixir
       uses: actions/setup-elixir@v1
       with:
