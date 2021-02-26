@@ -1,4 +1,5 @@
 [![Elixir CI](https://github.com/tiago154/rocketpay/actions/workflows/elixir.yml/badge.svg)](https://github.com/tiago154/rocketpay/actions/workflows/elixir.yml)
+[![Coverage Status](https://coveralls.io/repos/github/tiago154/rocketpay/badge.svg?branch=master)](https://coveralls.io/github/tiago154/rocketpay?branch=master)
 
 # Rocketpay
 
