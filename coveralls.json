@@ -1,0 +1,9 @@
+{
+  "skip_files": [
+    "test/",
+    "lib/rocketpay_web/channels/user_socket.ex"
+  ],
+  "coverage_options": {
+    "treat_no_relevant_lines_as_covered": true
+  }
+}
