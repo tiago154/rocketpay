@@ -17,7 +17,9 @@ defmodule Rocketpay.MixProject do
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
-        "coveralls.html": :test
+        "coveralls.html": :test,
+        cover: :test,
+        "generate.cover": :test
       ],
     ]
   end
@@ -69,7 +71,9 @@ defmodule Rocketpay.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      cover: ["test --cover"],
+      "generate.cover": ["coveralls.html"]
     ]
   end
 end
